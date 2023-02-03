@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/EduRamos95/Test_TypeScript/issues"
   },
-  "homepage": "https://github.com/EduRamos95/Test_TypeScript#readme"
+  "homepage": "https://github.com/EduRamos95/Test_TypeScript#readme",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
 }

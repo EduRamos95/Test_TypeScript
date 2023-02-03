@@ -18,6 +18,12 @@
   },
   "homepage": "https://github.com/EduRamos95/Test_TypeScript#readme",
   "devDependencies": {
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

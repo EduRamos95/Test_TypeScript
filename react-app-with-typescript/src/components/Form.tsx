@@ -1,18 +1,14 @@
 import {useState} from 'react'
+import { Sub } from '../types'
 // creando interface para reutilizar ------------------
 interface FormState {
-  nick: string
-  subMonths: number
-  avatar: string
-  description: string
+  inputValues: Sub
 }
 // ----------------------------------------------------
-
-
 // crear un render para el formmulario ----------------
 const Form = () => {
   // useState
-  const [inputValues, setInputValues] = useState({
+  const [inputValues, setInputValues] = useState<FormState["inputValues"]>({
     nick: '',
     subMonths: 0,
     avatar: '',

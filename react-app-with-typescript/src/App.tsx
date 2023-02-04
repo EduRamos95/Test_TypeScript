@@ -3,14 +3,19 @@ import './App.css';
 // importar componente de la carpeta componente...
 import List from './components/List'
 import Form from './components/Form'
-// crear interface ----------
-interface Sub {
-  nick: string
-  avatar: string
-  subMonths: number
-  description?: string
-}
+import {Sub} from './types'
 
+// crear interface ----(logica de negocio)--------------
+// ----- poner en otro sitio separado ► logica de estado
+// ----- para poder re-utilizar la interface -----------
+// interface Sub {
+//   nick: string
+//   avatar: string
+//   subMonths: number
+//   description?: string
+// }
+
+// crear interface ----(logica de estado)------
 interface AppState {
   subs: Array<Sub>
   newSubsNumber: number

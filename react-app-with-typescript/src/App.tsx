@@ -43,6 +43,7 @@ function App() {
     setSubs(INITIAL_STATE)
   }, [])
 // solo modificamos el <List> para que pase de JSX --> React.Component
+// regresamos a JSX.. --- pero ahora en List.tsx (otra forma de retornar)
   return (
     <div className="App">
       <h1>edu subs </h1>

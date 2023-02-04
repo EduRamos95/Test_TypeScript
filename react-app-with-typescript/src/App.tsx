@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 // crear interface ----------
 interface Sub {
@@ -8,10 +8,33 @@ interface Sub {
   description?: string
 }
 // --------------------------
+
+// crear initial state ------------
+// ------con la anterior data------
+const INITIAL_STATE = [
+  {
+    nick: 'dapelu',
+    subMonths: 3,
+    avatar: 'https://i.pravatar.cc/150?u=dapelu',
+    description: 'Dapelu hace de moderador a veces'
+  },
+  {
+    nick: 'sergio_serrano',
+    subMonths : 7,
+    avatar: 'https://i.pravatar.cc/150?u=sergio_serrano'
+  }
+]
+// --------------------------------
 function App() {
   // colocamos la interface como un tipo de dato que recibira
   const [subs, setSubs] = useState<Array<Sub>>([])
-  // ahora no hay error, simplemente los datos estan vacios
+  // inicializaremos con valores usando useEffect
+  // esto para la primera vez que se reenderize
+
+  useEffect(() => {
+    setSubs(INITIAL_STATE)
+  }, [])
+
   return (
     <div className="App">
       <h1>edu subs </h1>

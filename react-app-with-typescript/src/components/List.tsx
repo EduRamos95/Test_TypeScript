@@ -6,8 +6,13 @@ interface Props {
     description?: string
   }>
 }
-
-export default function List ({subs}: Props) {
+// convertir la funcion en arrow function -------
+// ----- exportar al final del codigo -----------
+// ----- List pasa a sre tipo JSX -- (cambiar)---
+// ------- porque no soporta todas las propiedades (child)
+// ------- verificar si es necesario agregar ----
+// ------- version corta (React.FC) <Type>-------
+const List: React.FunctionComponent<Props> = ({subs}) => {
   return (
     <ul>
       {
@@ -24,3 +29,5 @@ export default function List ({subs}: Props) {
     </ul>
   )
 }
+
+export default List

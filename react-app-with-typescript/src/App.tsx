@@ -42,7 +42,7 @@ function App() {
   useEffect(() => {
     setSubs(INITIAL_STATE)
   }, [])
-
+// solo modificamos el <List> para que pase de JSX --> React.Component
   return (
     <div className="App">
       <h1>edu subs </h1>

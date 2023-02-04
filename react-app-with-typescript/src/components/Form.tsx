@@ -1,4 +1,13 @@
 import {useState} from 'react'
+// creando interface para reutilizar ------------------
+interface FormState {
+  nick: string
+  subMonths: number
+  avatar: string
+  description: string
+}
+// ----------------------------------------------------
+
 
 // crear un render para el formmulario ----------------
 const Form = () => {

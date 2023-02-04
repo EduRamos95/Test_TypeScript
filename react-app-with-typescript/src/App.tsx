@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 // importar componente de la carpeta componente...
 import List from './components/List'
+import Form from './components/Form'
 // crear interface ----------
 interface Sub {
   nick: string
@@ -48,6 +49,7 @@ function App() {
     <div className="App">
       <h1>edu subs </h1>
       <List subs={subs} />
+      <Form />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './App.css';
 // importar componente de la carpeta componente...
 import List from './components/List'
@@ -42,7 +42,9 @@ const INITIAL_STATE = [
 function App() {
   // colocamos la interface como un tipo de dato que recibira
   const [subs, setSubs] = useState<AppState["subs"]>([])
-
+  const [newSubsNumber, setNewSubsNumber] = useState<AppState["newSubsNumber"]>(0)
+  // usamos el useRef para guardar 'div' y lo inicializamos
+  const divRef = useRef<HTMLDivElement>(null)
   // inicializaremos con valores usando useEffect
   // esto para la primera vez que se reenderize
 
@@ -59,8 +61,9 @@ function App() {
 // solo modificamos el <List> para que pase de JSX --> React.Component
 // regresamos a JSX.. --- pero ahora en List.tsx (otra forma de retornar)
 // -- form: ahora acepta un parametro {setSubs} ------
+// -- ref: agregamos ---------------------------------
   return (
-    <div className="App">
+    <div className="App" ref={divRef}>
       <h1>edu subs </h1>
       <List subs={subs} />
       <Form onNewSub={handleNewSub} />

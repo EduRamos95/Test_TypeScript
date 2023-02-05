@@ -3,6 +3,7 @@ import './App.css';
 // importar componente de la carpeta componente...
 import List from './components/List'
 import Form from './components/Form'
+import Contador from './components/Contador'
 import {Sub} from './types'
 
 // crear interface ----(logica de negocio)--------------
@@ -50,11 +51,13 @@ function App() {
   }, [])
 // solo modificamos el <List> para que pase de JSX --> React.Component
 // regresamos a JSX.. --- pero ahora en List.tsx (otra forma de retornar)
+// -- form: ahora acepta un parametro {setSubs} ------
   return (
     <div className="App">
       <h1>edu subs </h1>
       <List subs={subs} />
-      <Form />
+      <Form onNewSub={setSubs}/>
+      <Contador />
     </div>
   );
 }

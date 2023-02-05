@@ -5,9 +5,16 @@ interface FormState {
   inputValues: Sub
 }
 // ----------------------------------------------------
+// creando una funcion para añadir nuevos subs --------
+interface FormProps {
+  onNewSub: React.Dispatch<React.SetStateAction<Array<Sub>>>
+}
+
+//-----------------------------------------------------
 // crear un render para el formmulario ----------------
-const Form = () => {
-  // useState
+// --- agregando la funcion flecha como parametro -----
+const Form = ({onNewSub}: FormProps) => {
+  // useState ----------------------
   const [inputValues, setInputValues] = useState<FormState["inputValues"]>({
     nick: '',
     subMonths: 0,
@@ -16,7 +23,14 @@ const Form = () => {
   })
 
   // -----------------------------
-  const handleSubmit = () => {}
+  // ahora tendra evento ---------
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    // para dar el boton evitar que se refresque -----
+    evt.preventDefault()
+    // añadir nuevo sub -----------------------
+    // todos los que ya estan mas el nuevo ----
+    onNewSub(subs => ([...subs, inputValues]))
+  }
 
   // ----evt type any / no tiene contexto -------------------------
   // ------- si copiamos el codigo y lo ponemos dentro del html ---

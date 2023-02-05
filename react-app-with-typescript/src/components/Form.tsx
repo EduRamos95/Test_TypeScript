@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useReducer, useState} from 'react'
 import { Sub } from '../types'
 // creando interface para reutilizar ------------------
 interface FormState {
@@ -10,19 +10,56 @@ interface FormState {
 interface FormProps {
   onNewSub: (newSub: Sub) => void
 }
-
+//--- valores iniciales para form ----------------------
+const INITIAL_STATE = {
+  nick: '',
+  subMonths: 0,
+  avatar: '',
+  description: ''
+}
 //-----------------------------------------------------
+
+// ---- definiendo datos para ingresar al formReducer --
+type FormReducerAction = {
+  type: "change_value",
+  payload: {
+    inputName: string,
+    inputValue: string,
+  }
+} | {
+  type: "clear"
+}
+
+
+// ---creando el formReducer--------------
+const formReducer = (state: FormState["inputValues"] , action: FormReducerAction) => {
+  // hacer una determinado codigo dependiendo --------
+  // ---- el action type -----------------------------
+  // ---- swicth no incluye default ------------------
+  // ---- los eventos solo estan limitados -----------
+  switch(action.type){
+    case "change_value":
+      const {inputName, inputValue} = action.payload
+      return {
+        ...state,
+        [inputName]: inputValue
+      }
+    case "clear":
+      return INITIAL_STATE
+
+    //default:
+    //  return state
+  }
+}
+
+
 // crear un render para el formmulario ----------------
 // --- agregando la funcion flecha como parametro -----
 const Form = ({onNewSub}: FormProps) => {
   // useState ----------------------
-  const [inputValues, setInputValues] = useState<FormState["inputValues"]>({
-    nick: '',
-    subMonths: 0,
-    avatar: '',
-    description: ''
-  })
-
+  // --- se comento para evitar conficto ---
+  // const [inputValues, setInputValues] = useState<FormState["inputValues"]>(INITIAL_STATE)
+  const [inputValues, dispatch] = useReducer(formReducer, INITIAL_STATE)
   // -----------------------------
   // ahora tendra evento ---------
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
@@ -44,19 +81,30 @@ const Form = ({onNewSub}: FormProps) => {
   // ------- revisamos el error y tenemos que agregar el tipo -----
   // ------------ tipo ► HTMLTextAreaElement ----------------------
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setInputValues({
-      ...inputValues,
-      [evt.target.name]: evt.target.value
+    const {name, value} = evt.target
+    // para completar los datos en el dispatch ----
+    // --- necesitamos los valores de la etiqueta -
+    dispatch({
+      type: "change_value",
+      payload: {
+        inputName: name,
+        inputValue: value
+      }
     })
+    // comentaremos el codigo siguiente: ---------
+    // ---- solo usar el dispacth ----useReduce---
+    //setInputValues({
+    //  ...inputValues,
+    //  [evt.target.name]: evt.target.value
+    //})
   }
   // --------------------------------------------------------
   const handleClear = () => {
-    setInputValues({
-      nick: '',
-      subMonths: 0,
-      avatar: '',
-      description: ''
-    })
+    dispatch({ type: "clear"})
+
+    // comentaremos el codigo siguiente: ---------
+    // ---- solo usar el dispacth ----useReduce---
+    //setInputValues(INITIAL_STATE)
   }
 
   // --------------------------------------------------------

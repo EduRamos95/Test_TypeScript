@@ -62,6 +62,7 @@ function App() {
 // regresamos a JSX.. --- pero ahora en List.tsx (otra forma de retornar)
 // -- form: ahora acepta un parametro {setSubs} ------
 // -- ref: agregamos ---------------------------------
+// -- useReducer : agregamos ----(nothing)------------
   return (
     <div className="App" ref={divRef}>
       <h1>edu subs </h1>

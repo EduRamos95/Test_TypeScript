@@ -6,8 +6,9 @@ interface FormState {
 }
 // ----------------------------------------------------
 // creando una funcion para añadir nuevos subs --------
+// - cambiando el tipo de dato segun el parametro ingreso
 interface FormProps {
-  onNewSub: React.Dispatch<React.SetStateAction<Array<Sub>>>
+  onNewSub: (newSub: Sub) => void
 }
 
 //-----------------------------------------------------
@@ -28,8 +29,8 @@ const Form = ({onNewSub}: FormProps) => {
     // para dar el boton evitar que se refresque -----
     evt.preventDefault()
     // añadir nuevo sub -----------------------
-    // todos los que ya estan mas el nuevo ----
-    onNewSub(subs => ([...subs, inputValues]))
+    // solo se pasa el nuevo ------------------
+    onNewSub(inputValues)
   }
 
   // ----evt type any / no tiene contexto -------------------------

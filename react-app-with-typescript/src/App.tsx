@@ -49,6 +49,13 @@ function App() {
   useEffect(() => {
     setSubs(INITIAL_STATE)
   }, [])
+
+  // mejora es tener un handle para nuevos subs -----
+  // ----- error de tipo al enviarlo directo --------
+  const handleNewSub = (newSub: Sub):void => {
+    setSubs(subs => [...subs, newSub])
+  }
+
 // solo modificamos el <List> para que pase de JSX --> React.Component
 // regresamos a JSX.. --- pero ahora en List.tsx (otra forma de retornar)
 // -- form: ahora acepta un parametro {setSubs} ------
@@ -56,7 +63,7 @@ function App() {
     <div className="App">
       <h1>edu subs </h1>
       <List subs={subs} />
-      <Form onNewSub={setSubs}/>
+      <Form onNewSub={handleNewSub} />
       <Contador />
     </div>
   );
